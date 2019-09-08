@@ -1,2 +1,0 @@
-# maszyna-turinga-cpp
-
