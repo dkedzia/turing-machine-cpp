@@ -1,6 +1,7 @@
 #ifndef _TAPE_HPP
-    #include<iostream>
+    
     #define _TAPE_HPP
+    #include<iostream>
     class Tape{
         public:
             void moveP();
