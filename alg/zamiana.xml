@@ -1,0 +1,101 @@
+<symbol type="0">
+    <q type="0">
+        <write>0</write>
+        <move>P</move>
+        <gotoq>1</gotoq>
+    </q>
+    <q type="1">
+        <write>0</write>
+        <move>P</move>
+        <gotoq>1</gotoq>
+    </q>
+    <q type="2">
+        <write>0</write>
+        <move>P</move>
+        <gotoq>1</gotoq>
+    </q>
+    <q type="3">
+        <write>0</write>
+        <move>P</move>
+        <gotoq>1</gotoq>
+    </q>
+    <q type="4">
+        <move>E</move>
+        <write></write>
+        <gotoq></gotoq>
+    </q>
+</symbol>
+<symbol type="1">
+    <q type="0">
+        <write>1</write>
+        <move>P</move>
+        <gotoq>0</gotoq>
+    </q>
+    <q type="1">
+        <write>1</write>
+        <move>P</move>
+        <gotoq>2</gotoq>
+    </q>
+    <q type="2">
+        <write>1</write>
+        <move>P</move>
+        <gotoq>0</gotoq>
+    </q>
+    <q type="3">
+        <write>0</write>
+        <move>L</move>
+        <gotoq>3</gotoq>
+    </q>
+    <q type="4">
+        <move>E</move>
+        <write></write>
+        <gotoq></gotoq>
+    </q>
+</symbol>    
+<symbol type="2">
+    <q type="0">
+        <write>2</write>
+        <move>P</move>
+        <gotoq>0</gotoq>
+    </q>
+    <q type="1">
+        <write>2</write>
+        <move>P</move>
+        <gotoq>0</gotoq>
+    </q>
+    <q type="2">
+        <write>2</write>
+        <move>P</move>
+        <gotoq>0</gotoq>
+    </q>
+    <q type="3">
+    </q>
+    <q type="4">
+        <move>E</move>
+        <write></write>
+        <gotoq></gotoq>
+    </q>
+</symbol>    
+<symbol type="#">
+    <q type="0">
+        <write>#</write>
+        <move>-</move>
+        <gotoq>4</gotoq>
+    </q>
+    <q type="1">
+        <write>#</write>
+        <move>-</move>
+        <gotoq>4</gotoq>
+    </q>
+    <q type="2">
+
+    </q>
+    <q type="3">
+
+    </q>
+    <q type="4">
+        <move>E</move>
+        <write></write>
+        <gotoq></gotoq>
+    </q>
+</symbol>        
