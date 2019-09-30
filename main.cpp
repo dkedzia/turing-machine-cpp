@@ -1,18 +1,14 @@
 // Maszyna turinga
 
-#include "Tape.hpp"
-#include "Instructions.hpp"
-#include "FileParser.hpp"
-#include<iostream>
+#include "maszyna.hpp"
+
+#include <iostream>
+
+#include "state.hpp"
 
 int main(){
-    std::cout << "Maszyna Turinga" << std::endl;
-    Tape tape;
-    tape.moveP();
-
-    Instructions instructions;
-    instructions.addRecord(11, "StrIn", "StrOut", 66);
-
-    FileParser fileParser("test");
-    fileParser.execute();
+    TuringMachine turingMachine("zamiana.xml");
+    turingMachine.printStates();
+    turingMachine.printTape();
+    turingMachine.execute();
 }

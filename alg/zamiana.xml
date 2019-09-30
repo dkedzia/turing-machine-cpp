@@ -1,104 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <turing>
-    <symbol type="0">
-        <q type="0">
-            <write>0</write>
-            <move>P</move>
-            <gotoq>1</gotoq>
-        </q>
-        <q type="1">
-            <write>0</write>
-            <move>P</move>
-            <gotoq>1</gotoq>
-        </q>
-        <q type="2">
-            <write>0</write>
-            <move>P</move>
-            <gotoq>1</gotoq>
-        </q>
-        <q type="3">
-            <write>0</write>
-            <move>P</move>
-            <gotoq>1</gotoq>
-        </q>
-        <q type="4">
-            <move>E</move>
-            <write></write>
-            <gotoq></gotoq>
-        </q>
-    </symbol>
-    <symbol type="1">
-        <q type="0">
-            <write>1</write>
-            <move>P</move>
-            <gotoq>0</gotoq>
-        </q>
-        <q type="1">
-            <write>1</write>
-            <move>P</move>
-            <gotoq>2</gotoq>
-        </q>
-        <q type="2">
-            <write>1</write>
-            <move>P</move>
-            <gotoq>0</gotoq>
-        </q>
-        <q type="3">
-            <write>0</write>
-            <move>L</move>
-            <gotoq>3</gotoq>
-        </q>
-        <q type="4">
-            <move>E</move>
-            <write></write>
-            <gotoq></gotoq>
-        </q>
-    </symbol>    
-    <symbol type="2">
-        <q type="0">
-            <write>2</write>
-            <move>P</move>
-            <gotoq>0</gotoq>
-        </q>
-        <q type="1">
-            <write>2</write>
-            <move>P</move>
-            <gotoq>0</gotoq>
-        </q>
-        <q type="2">
-            <write>2</write>
-            <move>P</move>
-            <gotoq>0</gotoq>
-        </q>
-        <q type="3">
-        </q>
-        <q type="4">
-            <move>E</move>
-            <write></write>
-            <gotoq></gotoq>
-        </q>
-    </symbol>    
-    <symbol type="#">
-        <q type="0">
-            <write>#</write>
-            <move>-</move>
-            <gotoq>4</gotoq>
-        </q>
-        <q type="1">
-            <write>#</write>
-            <move>-</move>
-            <gotoq>4</gotoq>
-        </q>
-        <q type="2">
-
-        </q>
-        <q type="3">
-
-        </q>
-        <q type="4">
-            <move>E</move>
-            <write></write>
-            <gotoq></gotoq>
-        </q>
-    </symbol>
-</turing>        
+    <state name="0">
+        <stateTransition tapeSymbol="0" nextState="1" newSymbol="0" movementDirection="R"></stateTransition>
+        <stateTransition tapeSymbol="1" nextState="0" newSymbol="1" movementDirection="R"></stateTransition>
+        <stateTransition tapeSymbol="2" nextState="0" newSymbol="2" movementDirection="R"></stateTransition>
+        <stateTransition tapeSymbol="#" nextState="4" newSymbol="#" movementDirection="S"></stateTransition>
+    </state>
+    <state name="1">
+        <stateTransition tapeSymbol="0" nextState="1" newSymbol="0" movementDirection="R"></stateTransition>
+        <stateTransition tapeSymbol="1" nextState="2" newSymbol="1" movementDirection="R"></stateTransition>
+        <stateTransition tapeSymbol="2" nextState="0" newSymbol="2" movementDirection="R"></stateTransition>
+        <stateTransition tapeSymbol="#" nextState="4" newSymbol="#" movementDirection="S"></stateTransition>
+    </state>
+    <state name="2">
+        <stateTransition tapeSymbol="0" nextState="1" newSymbol="0" movementDirection="R"></stateTransition>
+        <stateTransition tapeSymbol="1" nextState="0" newSymbol="1" movementDirection="R"></stateTransition>
+        <stateTransition tapeSymbol="2" nextState="0" newSymbol="2" movementDirection="R"></stateTransition>
+        <stateTransition tapeSymbol="#" nextState="#" newSymbol="#" movementDirection="S"></stateTransition>
+    </state>
+    <state name="3">
+        <stateTransition tapeSymbol="0" nextState="1" newSymbol="0" movementDirection="R"></stateTransition>
+        <stateTransition tapeSymbol="1" nextState="1" newSymbol="0" movementDirection="L"></stateTransition>
+        <stateTransition tapeSymbol="2" nextState="1" newSymbol="#" movementDirection="S"></stateTransition>
+        <stateTransition tapeSymbol="#" nextState="1" newSymbol="#" movementDirection="S"></stateTransition>
+    </state>
+    <state name="4">
+        <stateTransition tapeSymbol="0" nextState="1" newSymbol="E" movementDirection="S"></stateTransition>
+        <stateTransition tapeSymbol="1" nextState="1" newSymbol="E" movementDirection="S"></stateTransition>
+        <stateTransition tapeSymbol="2" nextState="1" newSymbol="E" movementDirection="S"></stateTransition>
+        <stateTransition tapeSymbol="#" nextState="1" newSymbol="E" movementDirection="S"></stateTransition>
+    </state>
+    <tape>
+        <symbol content="0"></symbol>
+        <symbol content="1"></symbol>
+        <symbol content="2"></symbol>
+        <symbol content="1"></symbol>
+        <symbol content="2"></symbol>
+        <symbol content="1"></symbol>
+        <symbol content="1"></symbol>
+    </tape>
+</turing>       

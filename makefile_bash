@@ -1,3 +1,4 @@
 #!/bin/bash
-g++ main.cpp Tape.cpp Instructions.cpp FileParser.cpp -o maszyna
-echo "Compilation done."
+echo "---- Compilation begin -----"
+g++ -g -O0 main.cpp Tape.cpp Instructions.cpp FileParser.cpp -o maszyna
+echo "----- Compilation end -----"
