@@ -19,4 +19,6 @@ class TuringMachine {
         std::vector<std::string> tape;
         State* currentState = nullptr;
         int tapePosition = 0;
+        std::string startState;
+        std::string endState;
 };

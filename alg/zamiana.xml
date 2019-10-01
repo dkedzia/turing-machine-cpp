@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <turing>
+    <startState name="0"></startState>
+    <endState name="4"></endState>
     <state name="0">
+        <stateTransition tapeSymbol="#" nextState="4" newSymbol="#" movementDirection="S"></stateTransition>
         <stateTransition tapeSymbol="0" nextState="1" newSymbol="0" movementDirection="R"></stateTransition>
         <stateTransition tapeSymbol="1" nextState="0" newSymbol="1" movementDirection="R"></stateTransition>
         <stateTransition tapeSymbol="2" nextState="0" newSymbol="2" movementDirection="R"></stateTransition>
-        <stateTransition tapeSymbol="#" nextState="4" newSymbol="#" movementDirection="S"></stateTransition>
     </state>
     <state name="1">
+        <stateTransition tapeSymbol="#" nextState="4" newSymbol="#" movementDirection="S"></stateTransition>
         <stateTransition tapeSymbol="0" nextState="1" newSymbol="0" movementDirection="R"></stateTransition>
         <stateTransition tapeSymbol="1" nextState="2" newSymbol="1" movementDirection="R"></stateTransition>
         <stateTransition tapeSymbol="2" nextState="0" newSymbol="2" movementDirection="R"></stateTransition>
-        <stateTransition tapeSymbol="#" nextState="4" newSymbol="#" movementDirection="S"></stateTransition>
     </state>
     <state name="2">
+        <stateTransition tapeSymbol="#" nextState="#" newSymbol="#" movementDirection="S"></stateTransition>
         <stateTransition tapeSymbol="0" nextState="1" newSymbol="0" movementDirection="R"></stateTransition>
         <stateTransition tapeSymbol="1" nextState="0" newSymbol="1" movementDirection="R"></stateTransition>
-        <stateTransition tapeSymbol="2" nextState="0" newSymbol="2" movementDirection="R"></stateTransition>
-        <stateTransition tapeSymbol="#" nextState="#" newSymbol="#" movementDirection="S"></stateTransition>
+        <stateTransition tapeSymbol="2" nextState="3" newSymbol="0" movementDirection="L"></stateTransition>
     </state>
     <state name="3">
+        <stateTransition tapeSymbol="#" nextState="#" newSymbol="#" movementDirection="S"></stateTransition>
         <stateTransition tapeSymbol="0" nextState="1" newSymbol="0" movementDirection="R"></stateTransition>
-        <stateTransition tapeSymbol="1" nextState="1" newSymbol="0" movementDirection="L"></stateTransition>
-        <stateTransition tapeSymbol="2" nextState="1" newSymbol="#" movementDirection="S"></stateTransition>
-        <stateTransition tapeSymbol="#" nextState="1" newSymbol="#" movementDirection="S"></stateTransition>
+        <stateTransition tapeSymbol="1" nextState="3" newSymbol="0" movementDirection="L"></stateTransition>
+        <stateTransition tapeSymbol="2" nextState="#" newSymbol="#" movementDirection="S"></stateTransition>
     </state>
     <state name="4">
-        <stateTransition tapeSymbol="0" nextState="1" newSymbol="E" movementDirection="S"></stateTransition>
-        <stateTransition tapeSymbol="1" nextState="1" newSymbol="E" movementDirection="S"></stateTransition>
-        <stateTransition tapeSymbol="2" nextState="1" newSymbol="E" movementDirection="S"></stateTransition>
-        <stateTransition tapeSymbol="#" nextState="1" newSymbol="E" movementDirection="S"></stateTransition>
+        <stateTransition tapeSymbol="#" nextState="#" newSymbol="#" movementDirection="S"></stateTransition>
+        <stateTransition tapeSymbol="0" nextState="#" newSymbol="#" movementDirection="S"></stateTransition>
+        <stateTransition tapeSymbol="1" nextState="#" newSymbol="#" movementDirection="S"></stateTransition>
+        <stateTransition tapeSymbol="2" nextState="#" newSymbol="#" movementDirection="S"></stateTransition>
     </state>
     <tape>
         <symbol content="0"></symbol>

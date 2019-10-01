@@ -55,6 +55,14 @@ TuringMachine::TuringMachine(const std::string& filename){
     for(rapidxml::xml_node<>* symbolNode = tapeNode->first_node(); symbolNode; symbolNode = symbolNode->next_sibling()){
         tape.push_back(symbolNode->first_attribute("content")->value());
     }
+
+    rapidxml::xml_node<>* stState = document.first_node("turing")->first_node("startState");
+    startState = stState->first_attribute("name")->value();
+
+    rapidxml::xml_node<>* enState = document.first_node("turing")->first_node("endState");
+    endState = enState->first_attribute("name")->value();
+
+    currentState = &machineStates[startState];
 }
 void TuringMachine::printStates(){
     for(const auto& [_unused, state] : machineStates) {
@@ -88,22 +96,64 @@ void TuringMachine::printTape(){
 
     std::cout << "}" << std::endl;
 }
+void TuringMachine::execute(){
+		std::string currentTapeSymbol = tape[tapePosition];
 
+    while(tapePosition >= 0 && tapePosition < tape.size()  ) {
+        currentTapeSymbol = tape[tapePosition];
+        StateTransition* stateTransition = &(currentState->transitions[currentTapeSymbol]);
+        		
+        if(stateTransition == nullptr) {
+            std::cout << "Invalid state transition!" << std::endl;
+        }
+        
+        tape[tapePosition] = stateTransition->newSymbol;
+        
+        switch(stateTransition.movementDirection) {
+          case Move::MOVE_LEFT: {
+							std::cout << "Lewo" << std::endl;
+            	tapePosition -= 1;
+          }
+          case Move::MOVE_RIGHT: {
+						  std::cout << "Prawo" << std::endl;
+            	tapePosition += 1;
+          }
+          case Move::STAY: {
+							std::cout << "Nie ruszam sie" << std::endl;
+          }
+          default: {
+              std::cout << "Invalid movement command!" << std::endl;
+              throw "Invalid movement command!";
+          }
+        }
+        
+        currentState = &machineStates[stateTransition->newState];
+        
+				printTape();
+    }
+}
+/*
 void TuringMachine::execute(){
     std::string stateName = "0";
     while(tapePosition >= 0 && tapePosition < tape.size()){
-        std::string tapeSymbol = tape[tapePosition];
         for(const auto& [_unused, state] : machineStates) {
             if(state.stateName == stateName){
                 for(auto const& [_unused2, stateTransition] : state.transitions) {
-                    if(stateTransition.tapeSymbol == tapeSymbol){
-
+                    if(stateTransition.tapeSymbol == tape[tapePosition]){
+                        std::cout << "tape[" << tapePosition << "]: " << tape[tapePosition];
                         tape[tapePosition] = stateTransition.newSymbol;
-
+                        std::cout << " -> " << tape[tapePosition] << std::endl;
                         stateName = stateTransition.nextState;
 
-                        if(stateTransition.movementDirection == Move::MOVE_LEFT) { tapePosition-=1; }
-                        else if(stateTransition.movementDirection == Move::MOVE_RIGHT) { tapePosition+=1; }
+                        
+
+                        if(stateTransition.movementDirection == Move::MOVE_LEFT) { 
+                            std::cout << "Lewo" << std::endl;
+                            tapePosition-=1;
+                        } else if(stateTransition.movementDirection == Move::MOVE_RIGHT) {
+                            std::cout << "Prawo" << std::endl;
+                            tapePosition+=1;
+                        }
 
                     }                   
                 } 
@@ -112,3 +162,4 @@ void TuringMachine::execute(){
     }
     printTape();
 }
+*/
