@@ -1,14 +1,20 @@
-#include "maszyna.hpp"
-
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <map>
 #include <string>
 
+#include "maszyna.hpp"
 #include "../add/rapidxml-1.13/rapidxml.hpp"
 
-TuringMachine::TuringMachine(const std::string& filename){
+void TuringMachine::loadFile(const std::string& filename){
+    tape.clear();
+    machineStates.clear();
+    currentState = nullptr;
+    startState = "";
+    endState = "";
+    tapePosition = 0;
+
     rapidxml::xml_document<> document;
         rapidxml::xml_node<>* root_node;
     std::ifstream file("./alg/" + filename);
@@ -25,11 +31,12 @@ TuringMachine::TuringMachine(const std::string& filename){
 
     for(rapidxml::xml_node<>* stateNode = root_node->first_node("state"); stateNode; stateNode = stateNode->next_sibling("state")) {
         State stateDefinition;
+        stateDefinition = {};
         stateDefinition.stateName = stateNode->first_attribute("name")->value();
 
         for(rapidxml::xml_node<>* transitionNode = stateNode->first_node("stateTransition"); transitionNode; transitionNode = transitionNode->next_sibling("stateTransition")) {
             StateTransition stateTransition;
-
+            stateTransition = {};
             stateTransition.tapeSymbol = transitionNode->first_attribute("tapeSymbol")->value();
             stateTransition.nextState = transitionNode->first_attribute("nextState")->value();
             stateTransition.newSymbol = transitionNode->first_attribute("newSymbol")->value();
@@ -47,7 +54,6 @@ TuringMachine::TuringMachine(const std::string& filename){
 
     rapidxml::xml_node<>* tapeNode = document.first_node("turing")->first_node("tape");
     if(tapeNode == nullptr) {
-        std::cerr << "DUPA DUPA DUPA" << std::endl;
         throw "No valid program present in xml file!";
     }
 

@@ -9,8 +9,8 @@
 
 class TuringMachine {
     public:
-        TuringMachine(const std::string& filename);
-
+        // TuringMachine();
+        void loadFile(const std::string& filename);
         void execute();
         void printStates();
         void printTape();
