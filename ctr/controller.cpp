@@ -30,7 +30,7 @@ void Controller::runMachine(){
     turingMachine.printTape();
     printf("\nPress enter to see an alghorytm...\n");
     getchar();
-    printf("\n\tAlghorytm:\n");
+    printf("\n\tAlgorithm:\n");
     turingMachine.printStates();
     printf("\nPress enter to run machine...\n");
     getchar();
@@ -46,5 +46,7 @@ void Controller::runMachine(){
 void Controller::info(){
     view.showInfo();
     printf("\n\nPress enter to back to the main menu...\n");
+    std::cin.get();
     getchar();
+    action();
 }
