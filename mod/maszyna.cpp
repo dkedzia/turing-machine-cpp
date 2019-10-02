@@ -1,4 +1,3 @@
-
 #include "maszyna.hpp"
 
 #include <iostream>
@@ -7,17 +6,17 @@
 #include <map>
 #include <string>
 
-#include "add/rapidxml-1.13/rapidxml.hpp"
+#include "../add/rapidxml-1.13/rapidxml.hpp"
 
 TuringMachine::TuringMachine(const std::string& filename){
     rapidxml::xml_document<> document;
-	rapidxml::xml_node<>* root_node;
+        rapidxml::xml_node<>* root_node;
     std::ifstream file("./alg/" + filename);
 
-	if(!file.good()) {
-		std::cout << "File error." << std::endl;
-		return;	
-	}
+        if(!file.good()) {
+                std::cout << "File error." << std::endl;
+                return;
+        }
 
     std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
     buffer.push_back('\0');
@@ -34,7 +33,7 @@ TuringMachine::TuringMachine(const std::string& filename){
             stateTransition.tapeSymbol = transitionNode->first_attribute("tapeSymbol")->value();
             stateTransition.nextState = transitionNode->first_attribute("nextState")->value();
             stateTransition.newSymbol = transitionNode->first_attribute("newSymbol")->value();
-            
+
             std::string movementDirection = transitionNode->first_attribute("movementDirection")->value();
             if(movementDirection == "L") { stateTransition.movementDirection = Move::MOVE_LEFT; }
             else if(movementDirection == "R") { stateTransition.movementDirection = Move::MOVE_RIGHT; }
@@ -42,8 +41,8 @@ TuringMachine::TuringMachine(const std::string& filename){
 
             stateDefinition.transitions[stateTransition.tapeSymbol] = stateTransition;
         }
-  
-        machineStates[stateDefinition.stateName] = stateDefinition; 
+
+        machineStates[stateDefinition.stateName] = stateDefinition;
     }
 
     rapidxml::xml_node<>* tapeNode = document.first_node("turing")->first_node("tape");
@@ -83,7 +82,7 @@ void TuringMachine::printStates(){
             else { throw "Invalid tape movement direction!"; }
 
             std::cout << ", movementDirection: " << direction << "}" << std::endl;
-        } 
+        }
         std::cout << "\t}\n}," << std::endl;
     }
 }
@@ -91,45 +90,51 @@ void TuringMachine::printTape(){
     std::cout << "Tape: {";
 
     for(unsigned i = 0; i < tape.size(); ++i) {
-        std::cout << tape[i] << (i != tape.size() - 1 ? ", " : ""); 
+        std::cout << tape[i] << (i != tape.size() - 1 ? ", " : "");
     }
 
     std::cout << "}" << std::endl;
 }
 void TuringMachine::execute(){
-		std::string currentTapeSymbol = tape[tapePosition];
+        std::string currentTapeSymbol = tape[tapePosition];
 
     while(tapePosition >= 0 && tapePosition < tape.size()  ) {
         currentTapeSymbol = tape[tapePosition];
         StateTransition* stateTransition = &(currentState->transitions[currentTapeSymbol]);
-        		
+
         if(stateTransition == nullptr) {
             std::cout << "Invalid state transition!" << std::endl;
         }
-        
+
         tape[tapePosition] = stateTransition->newSymbol;
-        
-        switch(stateTransition.movementDirection) {
+
+        switch(stateTransition->movementDirection) {
           case Move::MOVE_LEFT: {
-							std::cout << "Lewo" << std::endl;
-            	tapePosition -= 1;
+                std::printf("Moving tape left:\t");
+                tapePosition -= 1;
+                break;
           }
+
           case Move::MOVE_RIGHT: {
-						  std::cout << "Prawo" << std::endl;
-            	tapePosition += 1;
+                std::printf("Moving tape right:\t");
+                tapePosition += 1;
+                break;
           }
           case Move::STAY: {
-							std::cout << "Nie ruszam sie" << std::endl;
+                std::printf("Stay:\t");
+                break;
           }
+
           default: {
               std::cout << "Invalid movement command!" << std::endl;
               throw "Invalid movement command!";
           }
         }
-        
-        currentState = &machineStates[stateTransition->newState];
-        
-				printTape();
+
+        currentState = &machineStates[stateTransition->nextState];
+
+        printTape();
+        std::cout << ">\n";
     }
 }
 /*
@@ -145,9 +150,9 @@ void TuringMachine::execute(){
                         std::cout << " -> " << tape[tapePosition] << std::endl;
                         stateName = stateTransition.nextState;
 
-                        
 
-                        if(stateTransition.movementDirection == Move::MOVE_LEFT) { 
+
+                        if(stateTransition.movementDirection == Move::MOVE_LEFT) {
                             std::cout << "Lewo" << std::endl;
                             tapePosition-=1;
                         } else if(stateTransition.movementDirection == Move::MOVE_RIGHT) {
@@ -155,8 +160,8 @@ void TuringMachine::execute(){
                             tapePosition+=1;
                         }
 
-                    }                   
-                } 
+                    }
+                }
             }
         }
     }

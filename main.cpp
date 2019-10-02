@@ -1,10 +1,13 @@
-// Maszyna turinga
-
-#include "maszyna.hpp"
-
+/*
+|------------------------------------------------
+|   Turing Machine
+|   Main file
+|------------------------------------------------
+*/
 #include <iostream>
 
-#include "state.hpp"
+#include "./mod/maszyna.hpp"
+#include "./mod/state.hpp"
 
 int main(){
     TuringMachine turingMachine("zamiana.xml");
